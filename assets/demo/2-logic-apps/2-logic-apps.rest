@@ -1,0 +1,6 @@
+POST {{logicAppEndpoint}}
+Content-Type: application/json
+
+{
+    "input": "Hello world!"
+}

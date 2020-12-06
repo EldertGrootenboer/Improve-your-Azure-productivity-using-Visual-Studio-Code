@@ -1,0 +1,15 @@
+######################################## Local ########################################
+### Get durable orchestration status
+# @name local
+GET http://localhost:7071/api/DurableFunction_HttpStart
+
+### Get instance status
+GET {{local.response.body.statusQueryGetUri}}
+
+######################################## Azure ########################################
+### Get durable orchestration status
+# @name azure
+GET https://fa-improve-your-azure-productivity-using-vs-code.azurewebsites.net/api/DurableFunction_HttpStart
+
+### Get instance status
+GET {{azure.response.body.statusQueryGetUri}}

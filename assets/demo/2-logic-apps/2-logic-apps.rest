@@ -1,3 +1,4 @@
+### Logic Apps
 POST {{logicAppEndpoint}}
 Content-Type: application/json
 

@@ -2,24 +2,51 @@
     "definition": {
         "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
         "actions": {
+            "Compose": {
+                "type": "Compose",
+                "inputs": "@triggerBody()",
+                "runAfter": {
+                    "Response": [
+                        "Succeeded"
+                    ]
+                }
+            },
+            "Compose_3": {
+                "type": "Compose",
+                "inputs": "@triggerBody()",
+                "runAfter": {
+                    "Response": [
+                        "Succeeded"
+                    ]
+                }
+            },
             "Response": {
                 "type": "Response",
-                "kind": "http",
                 "inputs": {
-                    "statusCode": 200
+                    "statusCode": 200,
+                    "body": {
+                        "echo": "@{triggerBody()?['input']}"
+                    }
                 },
                 "runAfter": {}
             }
         },
         "triggers": {
-            "manual": {
+            "request": {
                 "type": "Request",
                 "kind": "Http",
-                "inputs": {}
+                "inputs": {
+                    "schema": {
+                        "properties": {
+                            "input": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
             }
         },
-        "contentVersion": "1.0.0.0",
-        "outputs": {}
-    },
-    "kind": "Stateful"
+        "contentVersion": "1.0.0.0"
+    }
 }
